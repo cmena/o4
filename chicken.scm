@@ -30,8 +30,8 @@
 
 (define (getenv var)
   (if-let ((v (get-environment-variable var)))
-       v
-       (error 'getenv "environment does not contain variable" var)))
+    v
+    (error 'getenv "environment does not contain variable" var)))
 
 ;;; [io]
 
