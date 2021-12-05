@@ -44,8 +44,8 @@
 
 (define (append-file path data)
   (call-with-output-file path
-    (lambda (output-port)
-      (write data output-port))
+    (lambda (port)
+      (write data port))
     #:append))
 
 (define (slurp path)
