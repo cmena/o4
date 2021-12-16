@@ -1,13 +1,10 @@
+(module o4.base
+  *
 (import scheme
         (chicken base)
-        (chicken condition)
-        (chicken file posix)
         (chicken io)
-        (chicken process-context)
-        (chicken string)
-        (chicken time posix)
-        miscmacros
-        (srfi 18))
+        (chicken pathname)
+        (chicken process-context))
 
 ;;; [stx]
 
@@ -54,7 +51,4 @@
       (read-string #f port))))
 
 (define (basename path)
-  (pathname-strip-directory path))
-
-(define (o4-load feature)
-  (load (conc (getenv "HOME") "/.u/o4/" feature)))
+  (pathname-strip-directory path)))

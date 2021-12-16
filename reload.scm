@@ -1,7 +1,15 @@
-(define rl)
+(module o4.reload
+  (rl)
+(import scheme
+        (chicken base)
+        (chicken condition)
+        (chicken file posix)
+        (chicken string)
+        (chicken time posix)
+        (o4 base)
+        miscmacros
+        (srfi 18))
 
-(let ()
-  
 (define-record-type <file>
   (make-file path mtime counter)
   file?
@@ -54,17 +62,11 @@
                     (load-1 file)))
                 files))))
 
-(define (%rl . paths)
+(define (rl . paths)
   (let ((scan! (make-scanner paths)))
     (thread-start!
      (lambda ()
        (let loop ()
          (scan!)
          (thread-sleep! 0.75)
-         (loop))))))
-
-;;; [export]
-
-(set! rl %rl)
-
-) 
+         (loop)))))))
